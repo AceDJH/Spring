@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+<!--    把对象的创建交给Spring来管理-->
+<!--    创建bean的三种方式-->
+<!--    1、使用默认构造函数创建-->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
+        <constructor-arg index="0" value="令狐冲"/>
+        <constructor-arg index="1" value="23"/>
+        <constructor-arg index="2" ref="now"/>
+    </bean>
+    <bean id="now" class="java.util.Date"></bean>
+    <bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl"></bean>
+<!--&lt;!&ndash;    2、使用某个类中的方法创建对象，并存入容器&ndash;&gt;-->
+<!--    <bean id="instanceFactory" class="com.itheima.factory.InstanceFactory"></bean>-->
+<!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"></bean>-->
+<!--&lt;!&ndash;    3、使用某个类中的静态方法创建对象，并存入容器&ndash;&gt;-->
+<!--    <bean id="accountService" class="com.itheima.factory.StaticFactory" factory-method="getAccountService"></bean>-->
+
+<!--    使用set方法注入-->
+    <bean id="accountService2" class="com.itheima.service.impl.AccountServiceImpl2">
+        <property name="name" value="乔峰"></property>
+        <property name="age" value="35"></property>
+        <property name="birthday" ref="now"></property>
+    </bean>
+    <bean id="accountService3" class="com.itheima.service.impl.AccountServiceImpl3">
+        <property name="myStrs">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+        <property name="myList">
+            <list>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </list>
+        </property>
+        <property name="mySet">
+            <set>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </set>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="testA" value="AAA"></entry>
+                <entry key="testB" value="BBB"></entry>
+                <entry key="testC" value="CCC"></entry>
+            </map>
+        </property>
+        <property name="myProps">
+            <props>
+                <prop key="testProp">ppp</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <context:component-scan base-package="com.itheima"></context:component-scan>
+<!--    可以使用bean注解来代替-->
+<!--    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
+<!--        <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
+<!--        <property name="user" value="root"></property>-->
+<!--        <property name="password" value="123"></property>-->
+<!--    </bean>-->
+</beans>
