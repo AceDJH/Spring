@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+<!--    配置spring的ioc-->
+    <bean id="accountService" class="com.djh.service.impl.AccountServiceImpl"></bean>
+
+<!--    配置spring的aop配置步骤-->
+    <bean id="logger" class="com.djh.utils.Logger"></bean>
+
+    <aop:config>
+        <aop:aspect id="logAdvice" ref="logger">
+<!--            <aop:before method="printLog" pointcut="execution(public void com.djh.service.impl.AccountServiceImpl.saveAccount())"></aop:before>-->
+<!--            <aop:before method="printLog" pointcut="execution(* *..*.*(..))"></aop:before>-->
+<!--            <aop:before method="printLog" pointcut="execution(* com.djh.service.impl.*.*(..))"></aop:before>-->
+            <aop:before method="printLog" pointcut-ref="pt1"></aop:before>
+            <aop:pointcut id="pt1" expression="execution(* com.djh.service.impl.*.*(..))"/>
+
+<!--            配置环绕通知-->
+            <aop:around method="aroundPrintLog" pointcut-ref="pt1"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>
