@@ -28,4 +28,11 @@ public class AccountServiceTest {
             System.out.println(account);
         }
     }
+
+    @Test
+    public void testTransfer(){
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        IAccountServiceDemo1 accountService = applicationContext.getBean("accountServiceDemo1", IAccountServiceDemo1.class);
+        accountService.transfer("aaa", "bbb", 300f);
+    }
 }

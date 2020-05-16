@@ -15,4 +15,6 @@ public interface IAccountServiceDemo1 {
     void saveAccount(Account account);
     void updateAccount(Account account);
     void deleteAccount(Integer accountId);
+    // 转账
+    void transfer(String sourceName, String targetName, Float money);
 }

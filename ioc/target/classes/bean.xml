@@ -71,9 +71,15 @@
 <!--    </bean>-->
 
 <!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
-<!--        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
-<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
-<!--        <property name="user" value="root"></property>-->
-<!--        <property name="password" value="123"></property>-->
+<!--    <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+<!--    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
+<!--    <property name="user" value="root"></property>-->
+<!--    <property name="password" value="123"></property>-->
+<!--</bean>-->
+<!--    <bean id="connectionUtils" class="com.itheima.utils.ConnectionUtils">-->
+<!--        <property name="dataSource" ref="dataSource"></property>-->
+<!--    </bean>-->
+<!--    <bean id="transactionManager" class="com.itheima.utils.TransactionManager">-->
+<!--        <property name="connectionUtils" ref="connectionUtils"></property>-->
 <!--    </bean>-->
 </beans>
